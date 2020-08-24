@@ -31,26 +31,26 @@ class KeyboardFusionRGB:
     self.n_keys = 128       # number of keys for the custom lights
     
     # Modes   
-    # Code, Name,       Method
-    # 0x00, Static,     set_static_mode()
-    # 0x01,
-    # 0x02,
-    # 0x03,
-    # 0x04,
-    # 0x05,
-    # 0x06,
-    # 0x07,
-    # 0x08,
-    # 0x09,
-    # 0x0A,
-    # 0x0B,
-    # 0x0C,
-    # 0x0D,
-    # 0x0E,
-    # 0x0F,
-    # 0x10,
-    # 0x11,
-    # 0x12,
+    # Code, Name,           Method
+    # 0x00, Static,         set_static_mode()
+    # 0x01, Breathing,      set_breathing_mode()
+    # 0x02, Flow,           set_flow_mode() 
+    # 0x03, Firework,       set_firework_mode()  
+    # 0x04, Ripple,         set_ripple_mode() 
+    # 0x05, Rain,           set_rain_mode() 
+    # 0x06, Cycling,        set_cycling_mode() 
+    # 0x07, Trigger,        set_trigger_mode() 
+    # 0x08, Pulse,          set_pulse_mode() 
+    # 0x09, Radar,          set_radar_mode() 
+    # 0x0A, Star Shinning,  set_star_mode() 
+    # 0x0B, Wave,           set_wave_mode() 
+    # 0x0C, Cross,          set_cross_mode() 
+    # 0x0D, Dragonstrike,   set_dragonstrike_mode() 
+    # 0x0E, Bloom,          set_bloom_mode() 
+    # 0x0F, Spiral,         set_spiral_mode() 
+    # 0x10, Merge,          set_merge_mode() 
+    # 0x11, Crash,          set_crash_mode() 
+    # 0x12, Custom,         set_custom_mode() 
 
     self.mode_offsets = {0x00:0, 0x01:4, 0x02:9, 0x03:11, 0x04:16, 0x05:21, 
                          0x06:26, 0x07:27, 0x08:32, 0x09:37, 0x0A:43, 
