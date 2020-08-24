@@ -2,23 +2,25 @@
 Python driver to control the lights in the keyboard in laptop AOURUS 15G.
 
 Keyboad information
+
 ```
 idVendor      : 0x1044 Chu Yuen Enterprise Co., Ltd
 idProduct     : 0x7a3c
 iManufacturer : GIGABYTE
 iProduct      : Fusion RGB KB  
 ```
-<center>
-<img src="https://user-images.githubusercontent.com/8238803/91067085-78d78480-e600-11ea-8f1c-b879a2a7a8d7.png" style="width:40%">
-<img src="https://user-images.githubusercontent.com/8238803/91067102-80972900-e600-11ea-993d-059be89ce2dc.png" style="width:40%">
-</center>
 
-This dirver was developed by reverse engineering the communication protocol between the Fusion RGB keyboard and the AOURS Control Center application (for Windows). Each key in the keyboard has a RGB LED that can be controlled individually. The keyboard can be set to any of the 17 [pre-programmed modes]() or to a [Custom mode]() where the static color of key is configured separately. In Custom mode, for the moment only the [ENG-US]() layout is supported.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/8238803/91067085-78d78480-e600-11ea-8f1c-b879a2a7a8d7.png" width="300" />
+<img src="https://user-images.githubusercontent.com/8238803/91067102-80972900-e600-11ea-993d-059be89ce2dc.png" width="600" />
+</p>
+
+This dirver was developed by reverse engineering the communication protocol between the Fusion RGB keyboard and the AOURS Control Center application (for Windows). Each key in the keyboard has a RGB LED that can be controlled individually. The keyboard can be set to any of the 17 [pre-programmed modes](https://github.com/rcassani/keyboard-fusion-rgb#pre-programmed-modes) or to a [Custom mode](https://github.com/rcassani/keyboard-fusion-rgb#custom-mode) where the static color of each key is configured separately. In Custom mode, for the moment only the [ENG-US](https://user-images.githubusercontent.com/8238803/91067102-80972900-e600-11ea-993d-059be89ce2dc.png) layout is supported.
 
 The communication protocol was implemented with the [HIDAPI library](https://github.com/libusb/hidapi), more specifically with [cython-hidapi](https://github.com/trezor/cython-hidapi), which is a Python wrapper for the HIDAPI library.
 
 # Dependencies
-* [cython-hidapi](https://github.com/trezor/cython-hidapi)
+* [cython-hidapi](https://github.com/trezor/cython-hidapi)  
   `# pip install hidapi`
 
 * [HIDAPI library](https://github.com/libusb/hidapi)    
@@ -31,8 +33,8 @@ The communication protocol was implemented with the [HIDAPI library](https://git
 * Clone repo  
   `$ git clone https://github.com/rcassani/keyboard-fusion-rgb.git`
 
-* Install Python module
-  `$ cd keyboard-fusion-rgb`
+* Install Python module  
+  `$ cd keyboard-fusion-rgb`  
   `$ pip install .`
 
 # Permissions
@@ -47,7 +49,7 @@ The driver needs write permissions over the keyboard. This can be run by running
   * Change the permissions on the device
   `chmod -R 666  /dev/bus/usb/001/004`
 
-2. **Permanent**: A (`udev`)[] rule is create to change the permissions over the keyboard everytimne it is "connected".
+2. **Permanent**: A [`udev`](https://wiki.archlinux.org/index.php/udev) rule is create to change the permissions over the keyboard everytimne it is "connected".
 
   * Make the u`dev` rule: create the file `/etc/udev/rules.d/50-keyboard-fusion-rgb.rules` with the following content:
   `SUBSYSTEM=="usb", ATTRS{idVendor}=="1044", ATTR{idProduct}=="7a3c", MODE="0666"`
@@ -63,6 +65,8 @@ from keyboard_fusion_rgb import KeyboardFusionRGB
 keyboard = KeyboardFusionRGB(layout = 'eng_us')
 keyboard.set_static_mode(color_rgb=[0xff, 0x00, 0x00])
 ```
+More examples can be found in [example.py](https://github.com/rcassani/keyboard-fusion-rgb/blob/master/example.py)
+
 # Methods
 ## Pre-programmed Modes
 The keyboad can be set to any of the 17 pre-programmed modes.
@@ -94,8 +98,10 @@ In custom mode, the color for each key is selected individually. To do this a di
 ```
 # Set keyboard to Custom mode (0x12), and get current light configuration
 dict_keys = keyboard.set_custom_mode()
+
 # Color for letter A is updated to Blue
 dict_keys['A'] = [0x00, 0x00, 0xFF]
+
 # Updates the Custom mode to the new dictionary
 keyboard.set_custom_configuration(dict_keys)
 ```
