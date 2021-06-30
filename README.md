@@ -1,7 +1,7 @@
 # Keyboard Fusion RGB
 Python driver to control the lights in the keyboard in laptop AOURUS 15G.
 
-Keyboad information
+Keyboard information
 
 ```
 idVendor      : 0x1044 Chu Yuen Enterprise Co., Ltd
@@ -15,7 +15,7 @@ iProduct      : Fusion RGB KB
 <img src="https://user-images.githubusercontent.com/8238803/91067102-80972900-e600-11ea-993d-059be89ce2dc.png" width="600" />
 </p>
 
-This dirver was developed by reverse engineering the communication protocol between the Fusion RGB keyboard and the AOURS Control Center application (for Windows). Each key in the keyboard has a RGB LED that can be controlled individually. The keyboard can be set to any of the 17 [pre-programmed modes](https://github.com/rcassani/keyboard-fusion-rgb#pre-programmed-modes) or to a [Custom mode](https://github.com/rcassani/keyboard-fusion-rgb#custom-mode) where the static color of each key is configured separately. In Custom mode, for the moment only the [ENG-US](https://user-images.githubusercontent.com/8238803/91067102-80972900-e600-11ea-993d-059be89ce2dc.png) layout is supported.
+This driver was developed by reverse engineering the communication protocol between the Fusion RGB keyboard and the AORUS Control Center application (for Windows). Each key in the keyboard has a RGB LED that can be controlled individually. The keyboard can be set to any of the 17 [pre-programmed modes](https://github.com/rcassani/keyboard-fusion-rgb#pre-programmed-modes) or to a [Custom mode](https://github.com/rcassani/keyboard-fusion-rgb#custom-mode) where the static color of each key is configured separately. In Custom mode, for the moment only the [ENG-US](https://user-images.githubusercontent.com/8238803/91067102-80972900-e600-11ea-993d-059be89ce2dc.png) layout is supported.
 
 The communication protocol was implemented with the [HIDAPI library](https://github.com/libusb/hidapi), more specifically with [cython-hidapi](https://github.com/trezor/cython-hidapi), which is a Python wrapper for the HIDAPI library.
 
@@ -38,9 +38,9 @@ The communication protocol was implemented with the [HIDAPI library](https://git
   `$ pip install .`
 
 # Permissions
-The driver needs write permissions over the keyboard. This can be run by running as root (not recommened) or modifying the permissions for the keyboard with one of the following two methods:
+The driver needs write permissions over the keyboard. This can be run by running as root (not recommend) or modifying the permissions for the keyboard with one of the following two methods:
 
-1. **Temporal**: This process has to be done everytimne the keyboard is "disconnected".
+1. **Temporal**: This process has to be done every time the keyboard is "disconnected".
 
   * Identify the Bus and Device for the keyboard:
   `$ lsusb`  
@@ -49,7 +49,7 @@ The driver needs write permissions over the keyboard. This can be run by running
   * Change the permissions on the device
   `chmod -R 666  /dev/bus/usb/001/004`
 
-2. **Permanent**: A [`udev`](https://wiki.archlinux.org/index.php/udev) rule is create to change the permissions over the keyboard everytimne it is "connected".
+2. **Permanent**: A [`udev`](https://wiki.archlinux.org/index.php/udev) rule is create to change the permissions over the keyboard every time it is "connected".
 
   * Make the u`dev` rule: create the file `/etc/udev/rules.d/50-keyboard-fusion-rgb.rules` with the following content:
   `SUBSYSTEM=="usb", ATTRS{idVendor}=="1044", ATTR{idProduct}=="7a3c", MODE="0666"`
@@ -69,8 +69,8 @@ More examples can be found in [example.py](https://github.com/rcassani/keyboard-
 
 # Methods
 ## Pre-programmed Modes
-The keyboad can be set to any of the 17 pre-programmed modes.
-Each mode can configured in brigness. Some modes have extra features such as speed, direction, and random color. See the description of each method to see what parameters apply.
+The keyboard can be set to any of the 17 pre-programmed modes.
+Each mode can configured in brightness. Some modes have extra features such as speed, direction, and random color. See the description of each method to see what parameters apply.
 
 | Code  | Name          | Method                  |
 |----------|----------------|-------------------------|
@@ -107,6 +107,6 @@ keyboard.set_custom_configuration(dict_keys)
 ```
 
 # Protocol
-The request messages (REQ) from the PC to the keyboard, have a lenght of 300 bytes; and the response (RSP) messages have a lenght of 292. Althoug for both cases only the last 264 bytes are the instructions the data that is used to configure the keyboard.
+The request messages (REQ) from the PC to the keyboard, have a length of 300 bytes; and the response (RSP) messages have a length of 292. Although for both cases only the last 264 bytes are the instructions the data that is used to configure the keyboard.
 
 A full description of the REQ and RSP messages can be found in this [spreeadsheet](https://docs.google.com/spreadsheets/d/1ypcfDOhsm0H5z6wsgtpZg-oJ0oQ4zxjGwoJ37xBPDqA/edit?usp=sharing).

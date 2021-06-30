@@ -57,7 +57,7 @@ class KeyboardFusionRGB:
                          0x0B:48, 0x0C:54, 0x0D:59, 0x0E:68, 0x0F:76,
                          0x10:78, 0x11:86, 0x12:0}
 
-    # Key order for the ENG-US keyboad, only 101 keys are used
+    # Key order for the ENG-US keyboard, only 101 keys are used
     # the key order may change for other keyboard layouts    
     eng_us_keys = ['N/A', 'N/A', 'N/A', 'N/A', 'Ctrl-R', 'PgUp', 'Ctrl-L', 'F5',
                    'Q', 'Tab', 'A', 'ESC', 'Z', 'N/A', '~', '1', 
@@ -89,7 +89,7 @@ class KeyboardFusionRGB:
 
   def open_hid_comm(self):
     '''
-    Opens the communication with the HID keyboad and checks for erros
+    Opens the communication with the HID keyboard and checks for errors
     '''
     
     try:
@@ -113,14 +113,14 @@ class KeyboardFusionRGB:
     Parameters
     ----------
     buf_req : List of Int (8-bits)
-      DESCRIPTION. Request to write to the HID keyboad
+      DESCRIPTION. Request to write to the HID keyboard
     has_rsp : Boolean, optional
       DESCRIPTION. Indicates if a response is expected for the given request
 
     Returns
     -------
     buf_rsp : List of integers (16 bits) 
-      DESCRIPTION. Response of the HID keyboad, or None if has_rsp == False 
+      DESCRIPTION. Response of the HID keyboard, or None if has_rsp == False 
     '''
     
     self.open_hid_comm()
