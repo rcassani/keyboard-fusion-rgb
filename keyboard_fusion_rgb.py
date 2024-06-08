@@ -3,11 +3,11 @@
 """
 Driver for lights of Fusion RGB Keyboard in AORUS 15G
 
-Keyboard description:
-  
+Obtain Keyboard descriptionn (VENDOR_ID : PRODUCT_ID) with `lsubs`, for example:
+
+"Bus 001 Device 006: ID 1044:7a3c Chu Yuen Enterprise Co., Ltd Fusion RGB KB"
 VENDOR ID  = 0x1044
-PRODUCT id = 0x7A3C
-Chu Yuen Enterprise Co., Ltd Fusion RGB KB
+PRODUCT ID = 0x7A3C
 
 @author: Raymundo Cassani
 """
@@ -18,15 +18,14 @@ import numpy as np
 class KeyboardFusionRGB:
   """
   Class to control the RGB lights of the AOURS Fusion RGB Keyboard
-  VENDOR ID  = 0x1044, PRODUCT id = 0x7A3C, Chu Yuen Enterprise Co., Ltd 
   """
 
-  def __init__(self, layout = 'eng_us'):
-    
-    self.vendor_id = 0x1044
-    self.product_id = 0x7A3C
-     
-    self.delay_s = 0.01     # delay in seconds
+  def __init__(self, vendor_id = '0x1044', product_id = '0x7A3C', layout = 'eng_us'):
+
+    self.vendor_id  = int(vendor_id,  16)
+    self.product_id = int(product_id, 16)
+
+    self.delay_s   = 0.01   # delay in seconds
     self.data_size = 264    # number of bytes of the feature report
     self.n_keys    = 128    # number of keys for the custom lights
 

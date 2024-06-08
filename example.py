@@ -8,7 +8,7 @@ Created on Fri Aug 21 15:54:30 2020
 from keyboard_fusion_rgb import KeyboardFusionRGB
 import time
 
-keyboard = KeyboardFusionRGB(layout = 'eng_us')
+keyboard = KeyboardFusionRGB(vendor_id = '0x1044', product_id = '0x7A3C', layout = 'eng_us')
 
 # Set Static mode to Red
 keyboard.set_static_mode(color_rgb=[0xff, 0x00, 0x00])
@@ -37,6 +37,7 @@ colors = [ [255, 0, 0], [255, 255, 0], [255, 0, 255], [0, 255, 0], [0, 255, 255]
 for character, color in zip(characters, colors):
   dict_keys[character] = color
   keyboard.set_custom_configuration(dict_keys)
+  time.sleep(1)
 
 # Layout for typing
 l_pinky_keys =  ['1', '2', 'Q', 'A', 'Z', 'F1', 'F2']
