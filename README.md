@@ -51,11 +51,12 @@ The driver needs write permissions over the keyboard. This can be run by running
 
 2. **Permanent**: A [`udev`](https://wiki.archlinux.org/index.php/udev) rule is create to change the permissions over the keyboard every time it is "connected".
 
-  * Make the u`dev` rule: create the file `/etc/udev/rules.d/50-keyboard-fusion-rgb.rules` with the following content:
-  `SUBSYSTEM=="usb", ATTRS{idVendor}=="1044", ATTR{idProduct}=="7a3c", MODE="0666"`
+  * Make the `udev` rule: create the file `/etc/udev/rules.d/50-keyboard-fusion-rgb.rules` with the following content:  
+  `SUBSYSTEMS=="usb", ATTRS{idVendor}=="1044", ATTRS{idProduct}=="7a3c", MODE="0660", TAG+="uaccess"`
 
-  * Reload the `udev` rules:
-  `# udevadm control --reload-rules && udevadm trigger`
+  * Reload the `udev` rules:  
+  `# udevadm control --reload-rules`  
+  `# udevadm trigger`
 
 # Usage
 This snippet shows how to set the all keyboard lights to red.
