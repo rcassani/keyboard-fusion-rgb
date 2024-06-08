@@ -75,10 +75,29 @@ class KeyboardFusionRGB:
                    'Num-+', 'N/A', 'Num-Enter', 'Up', 'N/A', 'Left', 'N/A', 'End',
                    'N/A', 'Shift-L', 'Shift-R', 'N/A', 'WinKey', 'Fn', 'N/A', 'N/A']
 
-    
-    #for now only ENG-US layout is supported     
+    # Key order for the ENG-UK keyboard, only 101 keys are used
+    eng_uk_keys = ['N/A', 'N/A', 'N/A', 'N/A', 'Ctrl-R', 'PgUp', 'Ctrl-L', 'F5',
+                   'Q', 'Tab', 'A', 'ESC', 'Z', 'N/A', '~', '1',
+                   'W', 'Caps', 'S', 'N/A', 'X', 'N/A', 'F1', '2',
+                   'E', 'F3', 'D', 'F4', 'C', 'N/A', 'F2', '3',
+                   'R', 'T', 'F', 'G', 'V', 'B', '5', '4',
+                   'U', 'Y', 'J', 'H', 'M', 'N', '6', '7',
+                   'I', ']', 'K', 'F6', ',', 'N/A', '=', '8',
+                   'O', 'F7', 'L', 'N/A', '.', 'Menu', 'F8', '9',
+                   'P', '[', ';', "'", '#', '/', '-', '0',
+                   'N/A', 'N/A', 'N/A', 'Alt-L', 'N/A', 'Alt-R', 'N/A', 'Pause',
+                   'N/A', 'Backspace', 'N/A', 'F11', 'Enter', 'F12', 'F9', 'F10',
+                   'Num-7', 'Num-4', 'Num-1', 'Space', 'NumLk', 'Down', 'Home', 'N/A',
+                   'Num-8', 'Num-5', 'Num-2', 'Num-0', 'Num-/', 'Right', 'N/A', 'Del',
+                   'Num-9', 'Num-6', 'Num-3', 'Num-.', 'Num-*', 'Num--', 'N/A', 'PgDn',
+                   'Num-+', 'N/A', 'Num-Enter', 'Up', 'N/A', 'Left', 'N/A', 'End',
+                   'N/A', 'Shift-L', 'Shift-R', 'N/A', 'WinKey', 'Fn', 'N/A', 'N/A']
+
+    # for now only ENG-US and ENG-UK layouts are supported
     if layout == 'eng_us':
       self.keys = eng_us_keys
+    elif layout == 'eng_uk':
+      self.keys = eng_uk_keys
     else:
       self.keys = eng_us_keys
 
