@@ -28,50 +28,50 @@ class KeyboardFusionRGB:
      
     self.delay_s = 0.01     # delay in seconds
     self.data_size = 264    # number of bytes of the feature report
-    self.n_keys = 128       # number of keys for the custom lights
-    
-    # Modes   
+    self.n_keys    = 128    # number of keys for the custom lights
+
+    # Modes
     # Code, Name,           Method
     # 0x00, Static,         set_static_mode()
     # 0x01, Breathing,      set_breathing_mode()
-    # 0x02, Flow,           set_flow_mode() 
-    # 0x03, Firework,       set_firework_mode()  
-    # 0x04, Ripple,         set_ripple_mode() 
-    # 0x05, Rain,           set_rain_mode() 
-    # 0x06, Cycling,        set_cycling_mode() 
-    # 0x07, Trigger,        set_trigger_mode() 
-    # 0x08, Pulse,          set_pulse_mode() 
-    # 0x09, Radar,          set_radar_mode() 
-    # 0x0A, Star Shinning,  set_star_mode() 
-    # 0x0B, Wave,           set_wave_mode() 
-    # 0x0C, Cross,          set_cross_mode() 
-    # 0x0D, Dragonstrike,   set_dragonstrike_mode() 
-    # 0x0E, Bloom,          set_bloom_mode() 
-    # 0x0F, Spiral,         set_spiral_mode() 
-    # 0x10, Merge,          set_merge_mode() 
-    # 0x11, Crash,          set_crash_mode() 
-    # 0x12, Custom,         set_custom_mode() 
+    # 0x02, Flow,           set_flow_mode()
+    # 0x03, Firework,       set_firework_mode()
+    # 0x04, Ripple,         set_ripple_mode()
+    # 0x05, Rain,           set_rain_mode()
+    # 0x06, Cycling,        set_cycling_mode()
+    # 0x07, Trigger,        set_trigger_mode()
+    # 0x08, Pulse,          set_pulse_mode()
+    # 0x09, Radar,          set_radar_mode()
+    # 0x0A, Star Shinning,  set_star_mode()
+    # 0x0B, Wave,           set_wave_mode()
+    # 0x0C, Cross,          set_cross_mode()
+    # 0x0D, Dragonstrike,   set_dragonstrike_mode()
+    # 0x0E, Bloom,          set_bloom_mode()
+    # 0x0F, Spiral,         set_spiral_mode()
+    # 0x10, Merge,          set_merge_mode()
+    # 0x11, Crash,          set_crash_mode()
+    # 0x12, Custom,         set_custom_mode()
 
-    self.mode_offsets = {0x00:0, 0x01:4, 0x02:9, 0x03:11, 0x04:16, 0x05:21, 
-                         0x06:26, 0x07:27, 0x08:32, 0x09:37, 0x0A:43, 
+    self.mode_offsets = {0x00:0, 0x01:4, 0x02:9, 0x03:11, 0x04:16, 0x05:21,
+                         0x06:26, 0x07:27, 0x08:32, 0x09:37, 0x0A:43,
                          0x0B:48, 0x0C:54, 0x0D:59, 0x0E:68, 0x0F:76,
                          0x10:78, 0x11:86, 0x12:0}
 
     # Key order for the ENG-US keyboard, only 101 keys are used
-    # the key order may change for other keyboard layouts    
+    # the key order may change for other keyboard layouts
     eng_us_keys = ['N/A', 'N/A', 'N/A', 'N/A', 'Ctrl-R', 'PgUp', 'Ctrl-L', 'F5',
-                   'Q', 'Tab', 'A', 'ESC', 'Z', 'N/A', '~', '1', 
+                   'Q', 'Tab', 'A', 'ESC', 'Z', 'N/A', '~', '1',
                    'W', 'Caps', 'S', 'N/A', 'X', 'N/A', 'F1', '2',
                    'E', 'F3', 'D', 'F4', 'C', 'N/A', 'F2', '3',
                    'R', 'T', 'F', 'G', 'V', 'B', '5', '4',
-                   'U', 'Y', 'J', 'H', 'M', 'N', '6', '7', 
+                   'U', 'Y', 'J', 'H', 'M', 'N', '6', '7',
                    'I', ']', 'K', 'F6', ',', 'N/A', '=', '8',
-                   'O', 'F7', 'L', 'N/A', '.', 'Menu', 'F8', '9', 
+                   'O', 'F7', 'L', 'N/A', '.', 'Menu', 'F8', '9',
                    'P', '[', ';', "'", 'N/A', '/', '-', '0',
                    'N/A', 'N/A', 'N/A', 'Alt-L', 'N/A', 'Alt-R', 'N/A', 'Pause',
                    'N/A', 'Backspace', '\\', 'F11', 'Enter', 'F12', 'F9', 'F10',
-                   'Num-7', 'Num-4', 'Num-1', 'Space', 'NumLk', 'Down', 'Home', 'N/A', 
-                   'Num-8', 'Num-5', 'Num-2', 'Num-0', 'Num-/', 'Right', 'N/A', 'Del', 
+                   'Num-7', 'Num-4', 'Num-1', 'Space', 'NumLk', 'Down', 'Home', 'N/A',
+                   'Num-8', 'Num-5', 'Num-2', 'Num-0', 'Num-/', 'Right', 'N/A', 'Del',
                    'Num-9', 'Num-6', 'Num-3', 'Num-.', 'Num-*', 'Num--', 'N/A', 'PgDn',
                    'Num-+', 'N/A', 'Num-Enter', 'Up', 'N/A', 'Left', 'N/A', 'End',
                    'N/A', 'Shift-L', 'Shift-R', 'N/A', 'WinKey', 'Fn', 'N/A', 'N/A']
@@ -81,31 +81,31 @@ class KeyboardFusionRGB:
     if layout == 'eng_us':
       self.keys = eng_us_keys
     else:
-      self.keys = eng_us_keys 
-    
+      self.keys = eng_us_keys
+
     # empty HID device
-    self.hid_kb = hid.device()  
+    self.hid_kb = hid.device()
 
 
   def open_hid_comm(self):
     '''
     Opens the communication with the HID keyboard and checks for errors
     '''
-    
+
     try:
       self.handle = self.hid_kb.open(self.vendor_id, self.product_id)
     except:
-      print("Could not open HID keyboard") 
-  
-  
+      print("Could not open HID keyboard")
+
+
   def close_hid_comm(self):
     '''
-    Closes the communication with the HID keyboard    
+    Closes the communication with the HID keyboard
     '''
-    
+
     self.hid_kb.close()
-    
-    
+
+
   def write_keyboard_request(self, buf_req, has_rsp=False):
     '''
     Writes a request to the HID keyboard and reads the response if indicated
@@ -119,10 +119,10 @@ class KeyboardFusionRGB:
 
     Returns
     -------
-    buf_rsp : List of integers (16 bits) 
-      DESCRIPTION. Response of the HID keyboard, or None if has_rsp == False 
+    buf_rsp : List of integers (16 bits)
+      DESCRIPTION. Response of the HID keyboard, or None if has_rsp == False
     '''
-    
+
     self.open_hid_comm()
     # send request
     try:
@@ -146,7 +146,7 @@ class KeyboardFusionRGB:
     else:
       self.close_hid_comm()
       return None
-        
+
   def set_mode_configuration(self, mode, brightness, buf_mode):
     '''
     Sets a mode with its configuration
@@ -159,54 +159,54 @@ class KeyboardFusionRGB:
     buf_mode : List Int (8-bit)
       DESCRIPTION. Specific configuration for the indicated mode
     '''
-    
+
     offset = self.mode_offsets[mode]
     buf_req = ([0x07, 0x02] + [0x00] * 8 + # instructions to set mode
                [mode]                    + # mode code
                [0x00]                    + # seems useless
                [brightness]              + # brightness
-               [0x00] * offset           + # offset        
-               buf_mode)                   # configuration buffer for mode    
+               [0x00] * offset           + # offset
+               buf_mode)                   # configuration buffer for mode
     n_fill = self.data_size - len(buf_req)
     buf_req = buf_req + [0x00] * n_fill    # fill up to 264 bytes
     self.write_keyboard_request(buf_req)
 
-      
+
   def get_current_status(self):
     '''
     Gets the current configuration of the HID keyboard
 
     Returns
     -------
-    buf_rsp : List of integers (16 bits) 
+    buf_rsp : List of integers (16 bits)
       DESCRIPTION. Current configuration of the HID keyboard
     '''
-    
+
     buf_req = [0x07, 0x82] + [0x00] * 262
     buf_rsp = self.write_keyboard_request(buf_req, has_rsp=True)
-    return buf_rsp 
-    
-  
+    return buf_rsp
+
+
   def clean_configuration(self):
     '''
     Write the cleaning configuration command and check for error
     '''
-    
+
     buf_req = [0x07, 0x8A] + [0x00] * 262
     buf_rsp = self.write_keyboard_request(buf_req, has_rsp=True)
     # check the the response for cleaning is full of 0x00
     buf_rsp.pop(0) # except the first byte
     if not all(element == 0x00 for element in buf_rsp):
-      print('Error at Response for Cleaning command')  
-  
+      print('Error at Response for Cleaning command')
+
   def set_brightness(self, brightness):
     buf_req = self.get_current_status()
     buf_req[1] = 0x02         # change instruction
     buf_req[12] = brightness  # change brightness
     self.write_keyboard_request(buf_req)
-  
-  
-  # MODES 0x00 to 0x11  
+
+
+  # MODES 0x00 to 0x11
   def set_static_mode(self, color_rgb = [0xFF, 0xFF, 0xFF], brightness = 50):
     '''
     Sets the keyboard lights to Static mode
@@ -218,12 +218,12 @@ class KeyboardFusionRGB:
     brightness : Int (8-bit), optional
       DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     buf_mode = [0x00] + color_rgb
     self.set_mode_configuration(0x00, brightness, buf_mode)
 
-    
+
   def set_breathing_mode(self, color_rgb = [0xFF, 0xFF, 0xFF], speed = 50, brightness = 50):
     '''
     Sets the keyboard lights to Breathing mode
@@ -235,14 +235,14 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed] + [0x00] + color_rgb
     self.set_mode_configuration(0x01, brightness, buf_mode)
-    
+
   def set_flow_mode(self, speed = 50, direction = 'right', brightness = 50):
     '''
     Sets the keyboard lights to Flow mode
@@ -254,9 +254,9 @@ class KeyboardFusionRGB:
     direction: String, optional
       DESCRIPTION. Flow direction, values: "right" (default), "left", "up" and "down"
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     if direction == 'right':
@@ -268,10 +268,10 @@ class KeyboardFusionRGB:
     elif direction == 'up':
       dir_mode = 3
     else:
-      dir_mode = 0  
-    buf_mode = [speed, dir_mode]  
+      dir_mode = 0
+    buf_mode = [speed, dir_mode]
     self.set_mode_configuration(0x02, brightness, buf_mode)
-   
+
   def set_firework_mode(self, color_rgb = [0xFF, 0xFF, 0xFF], random = False, speed = 50, brightness = 50):
     '''
     Sets the keyboard lights to Firework mode
@@ -285,9 +285,9 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, int(random)] + color_rgb
@@ -304,14 +304,14 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
- 
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, 0x02] + color_rgb
     self.set_mode_configuration(0x04, brightness, buf_mode)
-    
+
   def set_rain_mode(self, color_rgb = [0xFF, 0xFF, 0xFF], random = False, speed = 50, brightness = 50):
     '''
     Sets the keyboard lights to Rain mode
@@ -325,7 +325,7 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
 
     self.clean_configuration()
@@ -342,14 +342,14 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed]
     self.set_mode_configuration(0x06, brightness, buf_mode)
-    
+
   def set_trigger_mode(self, color_rgb = [0xFF, 0xFF, 0xFF], random = False, speed = 50, brightness = 50):
     '''
     Sets the keyboard lights to Trigger mode
@@ -363,14 +363,14 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, int(random)] + color_rgb
     self.set_mode_configuration(0x07, brightness, buf_mode)
-    
+
   def set_pulse_mode(self, color_rgb = [0xFF, 0xFF, 0xFF], random = False, speed = 50, brightness = 50):
     '''
     Sets the keyboard lights to Pulse mode
@@ -384,9 +384,9 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, int(random)] + color_rgb
@@ -407,9 +407,9 @@ class KeyboardFusionRGB:
     direction: String, optional
       DESCRIPTION. Radar direction, "cw" = clockwise (default), "ccw" = counter clockwise
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     if direction == 'cw':
@@ -417,7 +417,7 @@ class KeyboardFusionRGB:
     elif direction == 'ccw':
       dir_mode = 0
     else:
-      dir_mode = 1  
+      dir_mode = 1
     buf_mode = [speed, int(random), dir_mode] + color_rgb
     self.set_mode_configuration(0x09, brightness, buf_mode)
 
@@ -434,7 +434,7 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
 
     self.clean_configuration()
@@ -457,9 +457,9 @@ class KeyboardFusionRGB:
     direction: String, optional
       DESCRIPTION. Wave direction, values: "right" (default), "left", "up" and "down"
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     if direction == 'right':
@@ -471,7 +471,7 @@ class KeyboardFusionRGB:
     elif direction == 'down':
       dir_mode = 3
     else:
-      dir_mode = 0  
+      dir_mode = 0
     buf_mode = [speed, int(random), dir_mode] + color_rgb
     self.set_mode_configuration(0x0B, brightness, buf_mode)
 
@@ -488,9 +488,9 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, int(random)] + color_rgb
@@ -514,9 +514,9 @@ class KeyboardFusionRGB:
     direction: String, optional
       DESCRIPTION. Dragonstrike direction, values: "right" (default), "left", "up" and "down"
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     if direction == 'right':
@@ -524,7 +524,7 @@ class KeyboardFusionRGB:
     elif direction == 'left':
       dir_mode = 1
     else:
-      dir_mode = 0  
+      dir_mode = 0
     buf_mode = [speed, int(random), dir_mode] + color_rgb_1 + color_rgb_2
     self.set_mode_configuration(0x0D, brightness, buf_mode)
 
@@ -544,9 +544,9 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, int(random)] + color_rgb_1 + color_rgb_2
@@ -563,9 +563,9 @@ class KeyboardFusionRGB:
     direction: String, optional
       DESCRIPTION. Spiral direction, values: "cw" = clockwise (default), "ccw" = counter clockwise
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     if direction == 'cw':
@@ -573,8 +573,8 @@ class KeyboardFusionRGB:
     elif direction == 'ccw':
       dir_mode = 1
     else:
-      dir_mode = 0   
-    buf_mode = [dir_mode, speed]  
+      dir_mode = 0
+    buf_mode = [dir_mode, speed]
     self.set_mode_configuration(0x0F, brightness, buf_mode)
 
   def set_merge_mode(self, color_rgb_1 = [0xFF, 0x00, 0x00], color_rgb_2 = [0x00, 0x00, 0xFF],
@@ -593,9 +593,9 @@ class KeyboardFusionRGB:
     speed : Int (8-bit), optional
       DESCRIPTION. Speed values 0 to 100 The default is 50.
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     buf_mode = [speed, int(random)] + color_rgb_1 + color_rgb_2
@@ -619,9 +619,9 @@ class KeyboardFusionRGB:
     direction: String, optional
       DESCRIPTION. Crash direction, values: "horizontal" (default) and "vertical"
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
     '''
-    
+
     self.clean_configuration()
     speed = 10 - round(speed / 10)
     if direction == 'horizontal':
@@ -629,17 +629,17 @@ class KeyboardFusionRGB:
     elif direction == 'vertical':
       dir_mode = 1
     else:
-      dir_mode = 0  
+      dir_mode = 0
     buf_mode = [speed, int(random), dir_mode] + color_rgb_1 + color_rgb_2
     self.set_mode_configuration(0x11, brightness, buf_mode)
-  
+
   # Custom mode 0x12
   def set_custom_mode(self, dict_keys = [], brightness = 50):
     '''
     Sets the light configuration for the Custom mode.
     If dict_keys is provided:
       The Custom mde is set and updated to the values in dict_keys
-    If dict_keys is not provided, 
+    If dict_keys is not provided,
       The Custom mode is set, and the stored value is retrieved and returned
 
     Parameters
@@ -647,23 +647,23 @@ class KeyboardFusionRGB:
     dict_keys : Dictionary, optional
       DESCRIPTION. Dictionary for the color RGB for each key, the default is [].
     brightness : Int (8-bit), optional
-      DESCRIPTION. Brightness level 0 to 100, the default is 50 
+      DESCRIPTION. Brightness level 0 to 100, the default is 50
 
     Returns
     -------
     dict_keys : Dictionary
       DESCRIPTION. Dictionary for the color RGB for each key
     '''
-    
+
     self.clean_configuration()
     self.set_mode_configuration(0x12, brightness, [])
     if dict_keys:
       # write new configuration
       self.set_custom_configuration(dict_keys)
     # read current configuration
-    dict_keys = self.get_custom_configuration() 
+    dict_keys = self.get_custom_configuration()
     return dict_keys
-     
+
   def get_custom_configuration(self):
     '''
     Gets the stored light values in the Custom mode
@@ -696,7 +696,7 @@ class KeyboardFusionRGB:
     dict_keys : Dictionary
       DESCRIPTION. Dictionary for the color RGB for each key
     '''
-    
+
     # dictionary to buffers
     hex_rgb = np.zeros((128, 3), int)
     for ix_key in range(128):
@@ -708,4 +708,3 @@ class KeyboardFusionRGB:
     buf_req_2 = [0x07, 0x06, 0x00, 0x02] + [0x00] * 4 + msg_2 + [0x00]*128
     self.write_keyboard_request(buf_req_1)
     self.write_keyboard_request(buf_req_2)
-     

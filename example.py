@@ -6,7 +6,7 @@ Created on Fri Aug 21 15:54:30 2020
 """
 
 from keyboard_fusion_rgb import KeyboardFusionRGB
-import time 
+import time
 
 keyboard = KeyboardFusionRGB(layout = 'eng_us')
 
@@ -32,12 +32,12 @@ keyboard.set_custom_configuration(dict_keys)
 # Turn ON and OFF specific keys in the keyboard, with Blue light
 characters = ['H', 'E', 'L', 'L', 'O', 'Space', 'W', 'O', 'R', 'L', 'D' ]
 colors = [ [255, 0, 0], [255, 255, 0], [255, 0, 255], [0, 255, 0], [0, 255, 255],
-           [0, 0, 255], 
+           [0, 0, 255],
            [255, 255, 255], [255, 50, 150], [23, 147, 209], [0, 0, 255], [122, 30, 85]]
 for character, color in zip(characters, colors):
   dict_keys[character] = color
   keyboard.set_custom_configuration(dict_keys)
-  
+
 # Layout for typing
 l_pinky_keys =  ['1', '2', 'Q', 'A', 'Z', 'F1', 'F2']
 l_pinky_color = [0, 255, 0]
@@ -69,10 +69,10 @@ numpad_color =  [160, 0, 255]
 other_keys  =   ['Home', 'PgUp', 'PgDn', 'End']
 other_color =   [255, 255, 255]
 
-key_sets   = [l_pinky_keys, l_ring_keys, l_middle_keys, l_index_keys, 
+key_sets   = [l_pinky_keys, l_ring_keys, l_middle_keys, l_index_keys,
               r_pinky_keys, r_ring_keys, r_middle_keys, r_index_keys,
               thumb_keys, l_side_keys, r_side_keys, arrow_keys, numpad_keys, other_keys]
-key_colors = [l_pinky_color, l_ring_color, l_middle_color, l_index_color, 
+key_colors = [l_pinky_color, l_ring_color, l_middle_color, l_index_color,
               r_pinky_color, r_ring_color, r_middle_color, r_index_color,
               thumb_color, l_side_color, r_side_color, arrow_color, numpad_color, other_color]
 
@@ -82,8 +82,6 @@ dict_keys = keyboard.set_custom_mode(brightness = 100)
 for key_set, key_color in zip(key_sets, key_colors):
   for key in key_set:
     dict_keys[key] = key_color
-    
+
 keyboard.set_custom_configuration(dict_keys)
 keyboard.set_brightness(80)
-                      
-
